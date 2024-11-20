@@ -1,5 +1,5 @@
 numpy
-pillow
+Pillow
 streamlit
 streamlit_drawable_canvas
 opencv-python
