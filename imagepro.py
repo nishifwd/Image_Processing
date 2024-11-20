@@ -6,7 +6,9 @@ import cv2
 import numpy as np
 from PIL import Image
 from streamlit_drawable_canvas import st_canvas
-
+import pkgutil
+from PIL import Image
+import io
 
 
 # Specify canvas parameters in application
@@ -37,20 +39,23 @@ def inverse_furiour(image):
                                      final_image[2].astype('int')])
     return final_image_assebled
 
-def create_canvas_draw_instance(background_image_path, key, height, width): 
+def create_canvas_draw_instance(background_image_name, key, height, width):
+    # Use pkgutil to read file content
+    image_data = pkgutil.get_data(__name__, f"images/{background_image_name}")
+    background_image = Image.open(io.BytesIO(image_data))
+
     canvas_result = st_canvas(
         fill_color="rgba(255, 165, 0, 0)",  
         stroke_width=stroke_width,
         stroke_color=stroke_color,
         background_color=bg_color,
-        background_image=Image.open(background_image_path),
+        background_image=background_image,
         update_streamlit=realtime_update,
         drawing_mode=drawing_mode,
-        height=height, 
+        height=height,
         width=width,
         key=key,
     )
-    
     return canvas_result
 
 def get_mask_from_canvas(canvas_images):
