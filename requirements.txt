@@ -3,5 +3,3 @@ Pillow
 streamlit
 streamlit_drawable_canvas
 opencv-contrib-python-headless 
-pycopy-pkgutil
-Python-IO
