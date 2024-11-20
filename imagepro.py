@@ -28,8 +28,8 @@ def inverse_furiour(image):
     final_image = []
     for c in image:
         channel = abs(np.fft.ifft2(c))
-#         plt.imshow(channel)
-#         plt.show()
+        plt.imshow(channel)
+        plt.show()
         final_image.append(channel)
     final_image_assebled = np.dstack([final_image[0].astype('int'),
                                      final_image[1].astype('int'),
@@ -130,10 +130,10 @@ def main():
         st.text("Blue channel in frequency domain - ")
         canvas_b = create_canvas_draw_instance(names[2], key="blue", height=img.shape[0], width=img.shape[1])
         
-        # st.text(type(canvas_r.image_data))
-        # st.text(img.shape)
-        # st.text(canvas_r.image_data.shape)
-        # st.text(transformed_frequencies_3dim[0].shape)
+        st.text(type(canvas_r.image_data))
+        st.text(img.shape)
+        st.text(canvas_r.image_data.shape)
+        st.text(transformed_frequencies_3dim[0].shape)
 
 
         if st.button('Get Result: - '):
@@ -156,11 +156,11 @@ def main():
 
             transformed = inverse_furiour(result)
 
-            # result_clipped = np.clip(result, 0 ,255)
+            result_clipped = np.clip(result, 0 ,255)
 
-            # result_formatted = np.dstack([result_clipped[0],
-            #                             result_clipped[1],
-            #                             result_clipped[2]])
+            result_formatted = np.dstack([result_clipped[0],
+                                        result_clipped[1],
+                                        result_clipped[2]])
 
             transformed_clipped = np.clip(transformed, 0, 255)
             st.text("Image Returned by Inverse Fourier Transform - ")
