@@ -6,9 +6,7 @@ import cv2
 import numpy as np
 from PIL import Image
 from streamlit_drawable_canvas import st_canvas
-import pkgutil
-from PIL import Image
-import io
+
 
 
 # Specify canvas parameters in application
@@ -39,23 +37,21 @@ def inverse_furiour(image):
                                      final_image[2].astype('int')])
     return final_image_assebled
 
-def create_canvas_draw_instance(background_image_name, key, height, width):
-    # Use pkgutil to read file content
-    image_data = pkgutil.get_data(__name__, f"images/{background_image_name}")
-    background_image = Image.open(io.BytesIO(image_data))
+def create_canvas_draw_instance(background_image, key, height, width): 
 
     canvas_result = st_canvas(
         fill_color="rgba(255, 165, 0, 0)",  
         stroke_width=stroke_width,
         stroke_color=stroke_color,
         background_color=bg_color,
-        background_image=background_image,
+        background_image=Image.open(background_image),
         update_streamlit=realtime_update,
         drawing_mode=drawing_mode,
-        height=height,
-        width=width,
+        height = height, 
+        width = width,
         key=key,
     )
+
     return canvas_result
 
 def get_mask_from_canvas(canvas_images):
@@ -124,7 +120,7 @@ def main():
         for temp in fft_images_log:
             st.text(temp.shape)
 
-        names = ["fft_images_log/bg_image_r.png", "fft_images_log/bg_image_g.png", "fft_images_log/bg_image_b.png"]
+        names = ["bg_image_r.png", "bg_image_g.png", "bg_image_b.png"]
 
         write_background_images(fft_images_log, names)
 
