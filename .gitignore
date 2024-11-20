@@ -1,9 +1,0 @@
-# Ignore temporary image files
-*.png
-
-# Ignore Python cache files
-__pycache__/
-*.py[cod]
-
-# Ignore virtual environment
-venv/
