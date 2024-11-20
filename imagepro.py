@@ -37,21 +37,20 @@ def inverse_furiour(image):
                                      final_image[2].astype('int')])
     return final_image_assebled
 
-def create_canvas_draw_instance(background_image, key, height, width): 
-
+def create_canvas_draw_instance(background_image_path, key, height, width): 
     canvas_result = st_canvas(
         fill_color="rgba(255, 165, 0, 0)",  
         stroke_width=stroke_width,
         stroke_color=stroke_color,
         background_color=bg_color,
-        background_image=Image.open(background_image),
+        background_image=Image.open(background_image_path),
         update_streamlit=realtime_update,
         drawing_mode=drawing_mode,
-        height = height, 
-        width = width,
+        height=height, 
+        width=width,
         key=key,
     )
-
+    
     return canvas_result
 
 def get_mask_from_canvas(canvas_images):
@@ -120,7 +119,7 @@ def main():
         for temp in fft_images_log:
             st.text(temp.shape)
 
-        names = ["bg_image_r.png", "bg_image_g.png", "bg_image_b.png"]
+        names = ["fft_images_log/bg_image_r.png", "fft_images_log/bg_image_g.png", "fft_images_log/bg_image_b.png"]
 
         write_background_images(fft_images_log, names)
 
