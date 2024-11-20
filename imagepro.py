@@ -131,10 +131,10 @@ def main():
         st.text("Blue channel in frequency domain - ")
         canvas_b = create_canvas_draw_instance(names[2], key="blue", height=img.shape[0], width=img.shape[1])
         
-        st.text(type(canvas_r.image_data))
-        st.text(img.shape)
-        st.text(canvas_r.image_data.shape)
-        st.text(transformed_frequencies_3dim[0].shape)
+        # st.text(type(canvas_r.image_data))
+        # st.text(img.shape)
+        # st.text(canvas_r.image_data.shape)
+        # st.text(transformed_frequencies_3dim[0].shape)
 
 
         if st.button('Get Result: - '):
